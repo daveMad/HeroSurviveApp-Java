@@ -4,6 +4,8 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import com.herosurvive.service.*;
+
 /**
  * Unit test for simple App.
  */
