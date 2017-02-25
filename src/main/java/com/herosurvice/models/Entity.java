@@ -6,5 +6,9 @@ public class Entity {
 	public Entity() {
 		this.position = 0;
 	}
+	
+	public void Move(int meter){
+		this.position += meter;
+	}
 
 }
