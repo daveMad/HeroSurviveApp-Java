@@ -7,7 +7,7 @@ import com.herosurvice.models.*;
 import com.herosurvive.service.*;
 
 public class GameLogic {
-	Boolean finished = false; // represented whether the resources are collected
+	Boolean finished; // represented whether the resources are collected
 								// or not
 	ArrayList<String> output = new ArrayList<String>();
 	GameMap map;
@@ -23,6 +23,8 @@ public class GameLogic {
 		// to do :
 		// set the flag to running
 		// call update method
+		finished = false;
+		update();
 	}
 
 	public void update() {

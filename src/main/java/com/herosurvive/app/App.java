@@ -1,5 +1,6 @@
 package com.herosurvive.app;
 
+import com.herosurvice.models.Hero;
 import com.herosurvive.service.InputLogic;;
 
 /**
@@ -11,8 +12,8 @@ public class App {
 
 		System.out.println("Hello World!");
 
-		InputLogic inputLogic = new InputLogic();
-		Log(inputLogic.getInput("Some kinda"));
+		GameLogic logic = new GameLogic(new Hero(12, 100, 10));
+		logic.start();
 	}
 
 	public static void Log(String message) {
