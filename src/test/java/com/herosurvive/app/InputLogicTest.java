@@ -11,9 +11,9 @@ public class InputLogicTest {
 	InputLogic repo = new InputLogic();
 	
 	@Test
-	public void getInputShouldReturnTest() {
+	public void getInputShouldReturnValue() {
 		String input = "Some";
-		assertNotNull(repo.getInput(input));
+		assertNotEquals("", repo.getInput(input));
 	}
 
 }
