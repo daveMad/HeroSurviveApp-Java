@@ -1,8 +1,8 @@
 package com.herosurvice.models;
 
 public interface ICharacter {
-	int attack();
-	int takeDamage(int damage);
+	void attack(ICharacter target);
+	void takeDamage(int damage);
 	
 }
 

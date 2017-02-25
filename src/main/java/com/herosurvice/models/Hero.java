@@ -3,17 +3,24 @@ package com.herosurvice.models;
 import javax.swing.Icon;
 
 public class Hero extends Entity implements IHero {
-	public Hero(int position,int hp,int attackPoints){
-		super(position,hp,attackPoints);
-	}
-
-	public int attack() {
-		// TODO Auto-generated method stub
-		return 0;
+	public Hero(int position, int hp, int attackPoints) {
+		super(position, hp, attackPoints);
 	}
 
 	public int move() {
 		// TODO Auto-generated method stub
-		return 0;
+		this.position += 1;
+		return this.position;
+	}
+
+	public void takeDamage(int damage) {
+		// TODO Auto-generated method stub
+		this.hp -= damage;
+	}
+
+	public void attack(ICharacter target) {
+
+		target.takeDamage(this.attackPoint);
+
 	}
 }
