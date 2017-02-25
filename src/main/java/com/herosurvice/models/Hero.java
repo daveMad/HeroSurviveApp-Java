@@ -3,8 +3,8 @@ package com.herosurvice.models;
 import javax.swing.Icon;
 
 public class Hero extends Entity implements IHero {
-	public Hero(int position,int attackPoints){
-		super(position);
+	public Hero(int position,int hp,int attackPoints){
+		super(position,hp,attackPoints);
 	}
 
 	public int attack() {
