@@ -18,18 +18,32 @@ public class GameLogicTest {
 		String expected = "Survived";
 		logic.logResult();
 	}
-	
+
 	@Test
-	public void shouldNotStartIfMapIsNull(){
+	public void shouldNotStartIfMapIsNull() {
 		GameLogic logic = new GameLogic(new Hero(12, 100, 10));
-		logic.start(); 
+		logic.start();
 		assertNull("", logic.finished);
+	}
+
+	@Test
+	public void shouldStartBattleAndReturnFalse() {
+		Hero hero = new Hero(12, 100, 10);
+		Enemy enemy = new Enemy(12, 50, 50);
+
+		GameLogic logic = new GameLogic(hero);
+		assertEquals(false, logic.startBattle(enemy));
+
 	}
 	
 	@Test
-	public void shouldStartBattleAndReturnResult(){
-		GameLogic logic = new GameLogic(new Hero(12, 100, 10));
-		assertEquals(true, logic.startBattle(new Enemy(12,50,10)));
+	public void shouldStartBattleAndReturnTrue() {
+		Hero hero = new Hero(12, 100, 10);
+		Enemy enemy = new Enemy(12, 10, 50);
+
+		GameLogic logic = new GameLogic(hero);
+		assertEquals(true, logic.startBattle(enemy));
+
 	}
 
 }
