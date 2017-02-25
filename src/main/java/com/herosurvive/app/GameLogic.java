@@ -28,8 +28,17 @@ public class GameLogic {
 			// to do : update hero position
 			// to do : check if hero intercepts with an instance of ICharacter
 			// to do : check if hero intercepts with an instance of IResource
-			map.checkInterception();
+			Enemy enemy =  (Enemy)map.checkInterception();
+			if(enemy != null){ // to do : start an attack
+				startBattle(enemy);
+			}
 			
 		}
+	}
+	
+	public Boolean startBattle(Enemy enemy){ // to do : return true if hero survives
+		Boolean battleFinished = false;
+		
+		return true;
 	}
 }

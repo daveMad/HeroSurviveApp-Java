@@ -3,23 +3,30 @@ import java.util.ArrayList;
 
 import com.herosurvice.models.*;
 public class GameMap {
-	IHero hero;
-	ArrayList<IEnemy> enemies;
+	Hero hero;
+	ArrayList<Enemy> enemies;
 	int endPosition = 0;
 	
-	public GameMap(IHero hero,ArrayList<IEnemy> enemies,int endPosition){
+	public GameMap(Hero hero,ArrayList<Enemy> enemies,int endPosition){
 		this.hero = hero;
 		this.enemies = enemies;
 		this.endPosition = endPosition;
 	}
 	
-	public void checkInterception() {
+	public ICharacter checkInterception() {
+		for (Enemy enemy : enemies) {
+			if(hero.position == enemy.position){
+				return enemy;
+			}
+		}
 		
+		return null;
 		
 	}
 	
-	public bool arriveEndPoint(){
+	public Boolean heroAtEndPoint(){
 		// to do : return whether hero.position equals to this.end
+		return hero.position >= this.endPosition;
 	}
 	
 	
