@@ -9,7 +9,7 @@ import com.herosurvive.service.*;
 public class GameLogic {
 	Boolean finished = false; // represented whether the resources are collected or not
 	ArrayList<String> output = new ArrayList<String>();
-	GameMap map = new GameMap();
+	GameMap map;
 	Hero hero;
 	
 	public GameLogic(Hero hero){
