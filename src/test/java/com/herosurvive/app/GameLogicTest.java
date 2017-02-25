@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import com.herosurvice.models.Enemy;
 import com.herosurvice.models.Hero;
 
 import junit.framework.Assert;
@@ -23,6 +24,12 @@ public class GameLogicTest {
 		GameLogic logic = new GameLogic(new Hero(12, 100, 10));
 		logic.start(); 
 		assertNull("", logic.finished);
+	}
+	
+	@Test
+	public void shouldStartBattleAndReturnResult(){
+		GameLogic logic = new GameLogic(new Hero(12, 100, 10));
+		assertEquals(true, logic.startBattle(new Enemy(12,50,10)));
 	}
 
 }

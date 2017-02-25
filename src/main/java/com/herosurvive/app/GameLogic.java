@@ -8,7 +8,7 @@ import com.herosurvive.service.*;
 
 public class GameLogic {
 	Boolean finished; // represented whether the resources are collected
-								// or not
+						// or not
 	ArrayList<String> output = new ArrayList<String>();
 	GameMap map;
 	Hero hero;
@@ -21,11 +21,11 @@ public class GameLogic {
 
 	public void start() {
 		// to do :
-		// call update method
-		if(map == null){
+		// call update method, set flag
+		if (map == null) {
 			return;
 		}
-			
+
 		finished = false;
 		update();
 	}
@@ -63,11 +63,17 @@ public class GameLogic {
 		Boolean herosTurn = true; // at the beginning, player should attack
 									// first
 		while (!battleFinished) {
-			if (hero.hp <= 0)
+			if (hero.hp <= 0) {
+				battleFinished = true;
 				return false;
 
-			if (enemy.hp <= 0)
+			}
+
+			if (enemy.hp <= 0) {
+				battleFinished = true;
 				return true;
+
+			}
 
 			if (herosTurn) {
 				hero.attack(enemy);
