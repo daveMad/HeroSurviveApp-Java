@@ -21,8 +21,11 @@ public class GameLogic {
 
 	public void start() {
 		// to do :
-		// set the flag to running
 		// call update method
+		if(map == null){
+			return;
+		}
+			
 		finished = false;
 		update();
 	}

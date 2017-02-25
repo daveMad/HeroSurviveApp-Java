@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import com.herosurvice.models.Hero;
 
+import junit.framework.Assert;
+
 public class GameLogicTest {
 
 	@Test
@@ -14,7 +16,13 @@ public class GameLogicTest {
 		GameLogic logic = new GameLogic(hero);
 		String expected = "Survived";
 		logic.logResult();
-		assertEquals(0, 0);
+	}
+	
+	@Test
+	public void shouldNotStartIfMapIsNull(){
+		GameLogic logic = new GameLogic(new Hero(12, 100, 10));
+		logic.start(); 
+		assertNull("", logic.finished);
 	}
 
 }
