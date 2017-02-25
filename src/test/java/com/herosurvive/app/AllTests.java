@@ -10,7 +10,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({
 	AppTest.class,
-	InputLogicTest.class })
+	InputLogicTest.class,
+	ModelsTest.class })
 public class AllTests {
 
 }
