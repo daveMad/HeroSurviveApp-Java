@@ -23,4 +23,9 @@ public class Hero extends Entity implements IHero {
 		target.takeDamage(this.attackPoint);
 
 	}
+
+	@Override
+	public String toString() {
+		return "Hero => Pos : " + this.position + " Hp : " + this.hp + " Attack : " + this.attackPoint;
+	}
 }
