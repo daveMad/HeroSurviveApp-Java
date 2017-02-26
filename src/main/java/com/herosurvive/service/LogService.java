@@ -36,6 +36,8 @@ public class LogService {
 		String message = enemy.name + " defeated Hero with " + enemy.hp + " HP remaining";
 		App.Log(message);
 		add(message);
+		
+		logDeath(hero); // if here is dead, we can just log it here;
 	}
 
 	public void logDeath(Hero hero) {
