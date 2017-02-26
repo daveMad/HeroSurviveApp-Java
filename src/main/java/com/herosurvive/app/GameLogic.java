@@ -14,8 +14,7 @@ public class GameLogic {
 	Hero hero;
 
 	public GameLogic(Hero hero) {
-		// to do : initialize game map with the parameters, the entity classes,
-		// then
+		// to do : initialize game map using FileLogic helper methods,
 		// invoke update()
 		this.hero = hero;
 	}
