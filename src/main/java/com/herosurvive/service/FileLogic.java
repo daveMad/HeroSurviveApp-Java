@@ -21,6 +21,7 @@ import com.herosurvive.app.App;
 public class FileLogic {
 	String fileNameWithPath;
 	String invalidMessage = "Not specified a valid file!";
+
 	public FileLogic(String filePath) {
 		this.fileNameWithPath = filePath;
 	}
@@ -43,10 +44,11 @@ public class FileLogic {
 			App.Log(invalidMessage);
 			return;
 		}
-		if(!new File(inputFile).exists());
-			App.Log(invalidMessage + " : File Not Exists!");
-			
+		if (!new File(inputFile).exists())
+			App.Log(invalidMessage + " : File Not Exists! => " + inputFile);
+		
 		this.fileNameWithPath = inputFile;
+		readSmall();
 	}
 
 	public void readSmall() throws IOException {

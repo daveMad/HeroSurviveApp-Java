@@ -9,12 +9,12 @@ import org.junit.Test;
 import com.herosurvive.service.*;
 
 public class FileLogicTest {
-
+	FileLogic logic;
 	@Test
 	public void shouldReturnEverythinInTextFile() {
-		FileLogic fLogic = new FileLogic("src/test.input");
+		 logic = new FileLogic("src/test.input");
 		try {
-			fLogic.readSmall();
+			logic.readSmall();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -23,9 +23,20 @@ public class FileLogicTest {
 	
 	@Test
 	public void shouldWriteToExistingFile(){
-		FileLogic logic = new FileLogic("src/sample-input1.txt");
+		 logic = new FileLogic("src/sample-input1.txt");
 		try {
 			logic.writeSmall();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void userShouldEnterValidFile(){
+		 logic = new FileLogic("src/test.input");
+		 try {
+			logic.readFromSpecifiedFile();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

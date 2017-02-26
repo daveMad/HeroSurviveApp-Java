@@ -16,5 +16,3 @@ There is a Bug at position 489
 There is a Lion at position 1527
 There is a Lion at position 2865
 There is a Zombie at position 3523
-amazed
-amazed
