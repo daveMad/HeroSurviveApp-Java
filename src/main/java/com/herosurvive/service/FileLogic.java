@@ -54,7 +54,7 @@ public class FileLogic {
 		readSmall();
 	}
 
-	public void writeToSpecifiedFile(String file) throws IOException {
+	public void writeToSpecifiedFile() throws IOException {
 		String info = "Please enter the output file path (e.g : C:/file.output ):";
 		String outputFile = logic.getInput(info);
 		if (outputFile.trim() == "") {
@@ -63,7 +63,9 @@ public class FileLogic {
 		}
 
 		if (!new File(outputFile).exists())
-			App.Log(fileNotFoundMessage + " : " + outputFile);
+			App.Log(fileNotFoundMessage + " : " + outputFile + " A new file with this name'll be created");
+		
+		App.Log("");
 		
 		this.fileNameWithPath = outputFile;
 		Path path = Paths.get(outputFile);

@@ -42,4 +42,15 @@ public class FileLogicTest {
 			e.printStackTrace();
 		}
 	}
+	
+	@Test
+	public void shouldWriteToSpecifiedFile(){
+		logic = new FileLogic("src/test.input");
+		try {
+			logic.writeToSpecifiedFile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
