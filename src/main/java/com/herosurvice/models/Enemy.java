@@ -1,10 +1,14 @@
 package com.herosurvice.models;
 
 public class Enemy extends Entity implements ICharacter {
-
-	public Enemy(int position, int hp, int attackPoint) {
+	
+	public String name;
+	
+	public Enemy(int position, int hp, int attackPoint,String name) {
 		super(position, hp, attackPoint);
+		this.name = name;
 	}
+	
 
 	public void attack(ICharacter target) {
 		// TODO Auto-generated method stub

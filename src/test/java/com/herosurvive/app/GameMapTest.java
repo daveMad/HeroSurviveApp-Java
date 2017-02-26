@@ -22,11 +22,12 @@ public class GameMapTest {
 	}
 
 	public ArrayList<Enemy> getSampleEnemies() {
+		String name = "Bug";
 		ArrayList<Enemy> enemies = new ArrayList<Enemy>();
-		enemies.add(new Enemy(5, 10, 10));
-		enemies.add(new Enemy(10, 10, 10));
-		enemies.add(new Enemy(12, 10, 10));
-		enemies.add(new Enemy(50, 10, 10));
+		enemies.add(new Enemy(5, 10, 10,name));
+		enemies.add(new Enemy(10, 10, 10,name));
+		enemies.add(new Enemy(12, 10, 10,name));
+		enemies.add(new Enemy(50, 10, 10,name));
 		return enemies;
 
 	}

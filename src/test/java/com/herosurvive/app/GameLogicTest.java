@@ -29,7 +29,7 @@ public class GameLogicTest {
 	@Test
 	public void shouldStartBattleAndReturnFalse() {
 		Hero hero = new Hero(12, 100, 10);
-		Enemy enemy = new Enemy(12, 50, 50);
+		Enemy enemy = new Enemy(12, 50, 50,"Bug");
 
 		GameLogic logic = new GameLogic(hero);
 		assertEquals(false, logic.startBattle(enemy));
@@ -40,7 +40,7 @@ public class GameLogicTest {
 	@Test
 	public void shouldStartBattleAndReturnTrue() {
 		Hero hero = new Hero(12, 100, 10);
-		Enemy enemy = new Enemy(12, 10, 50);
+		Enemy enemy = new Enemy(12, 10, 50,"Mutant");
 
 		GameLogic logic = new GameLogic(hero);
 		assertEquals(true, logic.startBattle(enemy));
