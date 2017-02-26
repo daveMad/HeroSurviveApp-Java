@@ -12,6 +12,8 @@ public class LogService {
 	private static LogService _logger;
 
 	private List<String> fullOutput;
+	
+	private List<String> errorMessages;
 
 	private LogService() {
 		fullOutput = new ArrayList<String>();
@@ -58,5 +60,10 @@ public class LogService {
 		String message = "Hero started journey with " + hero.hp + "HP!";
 		App.Log(message);
 		add(message);
+	}
+	
+	public void logError(ErrorType type){
+		this.errorMessages.add(type.toString());
+		App.Log(type.toString());
 	}
 }
