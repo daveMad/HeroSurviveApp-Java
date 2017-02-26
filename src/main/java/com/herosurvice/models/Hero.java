@@ -27,4 +27,9 @@ public class Hero extends Entity implements IHero {
 	public String toString() {
 		return "Hero => Pos : " + this.position + " Hp : " + this.hp + " Attack : " + this.attackPoint;
 	}
+
+	public int moveRange(int range) {
+		this.position += range;
+		return this.position;
+	}
 }
