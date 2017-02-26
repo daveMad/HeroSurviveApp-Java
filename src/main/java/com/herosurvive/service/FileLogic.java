@@ -114,7 +114,7 @@ public class FileLogic {
 		return new File(fileName).exists();
 	}
 
-	List<String> read(Path path) throws IOException {
+	public List<String> read(Path path) throws IOException {
 		/*try {
 			if (!new File(this.fileNameWithPath).exists())
 				throw new FileNotFoundException(this.fileNotFoundMessage);
