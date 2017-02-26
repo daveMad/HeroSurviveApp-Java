@@ -23,7 +23,9 @@ public class ParserLogic {
 	
 	public void parseWholeFile(List<String> inputData){
 		// some lines are clear,
-		
+		parsedData.resourcePoint = parseResourceString(inputData.get(0));
+		parsedData.hero.hp = parseResourceString(inputData.get(1));
+		parsedData.hero.attackPoi
 	}
 	
 	public int parseResourceString(String resourceLine){ // Resources are 7500 meters away
