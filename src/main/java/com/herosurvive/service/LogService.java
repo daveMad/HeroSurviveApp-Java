@@ -13,7 +13,7 @@ public class LogService {
 
 	private List<String> fullOutput;
 	
-	private List<String> errorMessages;
+	public List<String> errorMessages;
 
 	private LogService() {
 		fullOutput = new ArrayList<String>();

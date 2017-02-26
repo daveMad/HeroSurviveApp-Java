@@ -72,6 +72,11 @@ public class FileLogic {
 		write(path, getSampleData());
 
 	}
+	
+	public void writeOutput(String outputFile,List<String> outputData){
+		Path path = Paths.get(outputFile);
+		write(path,outputData);
+	}
 
 	public void readSmall() throws IOException {
 		Path path = Paths.get(this.fileNameWithPath);
