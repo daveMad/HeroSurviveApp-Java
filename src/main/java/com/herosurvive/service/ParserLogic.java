@@ -38,7 +38,7 @@ public class ParserLogic {
 	}
 	
 	public String[] getKeywords(){ 
-		return "resources*hero*enemy*has*attack*there is a".split("*");
+		return "resources*hero*enemy*has*attack*there is a".split("\\*");
 	}
 	
 	Boolean checkIfNumber(String input){
