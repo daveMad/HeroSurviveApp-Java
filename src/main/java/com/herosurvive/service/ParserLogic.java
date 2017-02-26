@@ -52,8 +52,8 @@ public class ParserLogic {
 		return null;
 	}
 	
-	public Enemy extractEnemy(String line){ // extract the enemy name w
-		
+	public Enemy extractEnemyName(String line){ // extract the enemy name w
+		return new Enemy(line.substring(0,line.indexOf("")));
 	}
 	
 	class RandomData {
