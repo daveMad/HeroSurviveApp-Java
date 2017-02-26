@@ -87,7 +87,7 @@ public class ParserLogic {
 		return "resources*hero*enemy*has*attack*there is a".split("\\*");
 	}
 	
-	int extractNumber(String[] inputArray){
+	public int extractNumber(String[] inputArray){
 		for (String item : inputArray) {
 			if(checkIfNumber(item) == true)
 				return Integer.parseInt(item);

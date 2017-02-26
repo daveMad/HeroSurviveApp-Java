@@ -33,4 +33,11 @@ public class ParserLogicTest {
 			assertEquals(expected, actual);
 		}
 	}
+	
+	@Test
+	public void shouldExtractNumberFromStringArray(){
+		String[] inputArray = "There is a Zombie at position 1681".split(" ");
+		int expected = 1681;
+		assertEquals(expected,ParserLogic.getInstance().extractNumber(inputArray));
+	}
 }
