@@ -24,20 +24,30 @@ public class GameMapTest {
 	public ArrayList<Enemy> getSampleEnemies() {
 		ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 		enemies.add(new Enemy(5, 10, 10));
+		enemies.add(new Enemy(10, 10, 10));
 		enemies.add(new Enemy(12, 10, 10));
 		enemies.add(new Enemy(50, 10, 10));
 		return enemies;
 
 	}
-	
-	@Test 
-	public void shouldArriveEndPoint(){
+
+	@Test
+	public void shouldArriveEndPoint() {
 		Hero hero = new Hero(10, 100, 40);
 		int mapEndPosition = 25;
 
 		GameMap map = new GameMap(hero, getSampleEnemies(), mapEndPosition);
 		hero.moveRange(15);
 		assertTrue(map.heroAtEndPoint());
+	}
+
+	@Test
+	public void shouldInterceptWithEnemy() {
+		Hero hero = new Hero(10, 100, 40);
+		int mapEndPosition = 25;
+
+		GameMap map = new GameMap(hero, getSampleEnemies(), mapEndPosition);
+		assertNotNull(map.checkInterception());
 	}
 
 }
