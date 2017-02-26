@@ -7,6 +7,8 @@ import com.herosurvice.models.*;
 import com.herosurvive.app.App;
 
 public class LogService {
+	
+	
 	private static LogService _logger;
 
 	private List<String> fullOutput;

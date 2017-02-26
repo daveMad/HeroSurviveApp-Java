@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class InputLogic {
-
+	
+	
+	
 	public String getInput(String infoMessage) {
 		// inform user about what kind of data should be entered
 		System.out.println(infoMessage);
@@ -25,6 +27,7 @@ public class InputLogic {
 
 		return input;
 	}
+	
 	
 	
 

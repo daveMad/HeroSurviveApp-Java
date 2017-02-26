@@ -1,5 +1,9 @@
 package com.herosurvive.app;
 
+import java.io.FileNotFoundException;
+import java.util.List;
+
+import com.herosurvice.models.ErrorType;
 import com.herosurvice.models.Hero;
 import com.herosurvive.service.*;;
 
@@ -13,16 +17,35 @@ public class App {
 		System.out.println("Hello World!");
 		// first get inputs for filenames,
 		// then start the game
-		
+
 		GameLogic logic = new GameLogic(new Hero(12, 100, 10));
-		
+
 		logic.start();
 	}
-	
-	void HandleInput(){
+
+	void HandleInput() {
+		String inputFileMessage = "Please enter your input file : (e.g : C:/test.input)";
+		String outputFileMessage = "Please enter your output file : (e.g : C:/test.output)";
+		InputLogic input = new InputLogic();
+		String inputFileName = input.getInput(inputFileMessage);
+		String outputFileName = input.getInput(outputFileMessage);
+		
+		// keep file names on service
+		DataService.getInstance().setFileNames(inputFileName, outputFileName);
+		
+		
+		// read input string and parse
 		FileLogic fileLogic = new FileLogic("");
-		fileLogic.getInputFile(); // get input file
-		fileLogic.getOutputFile();
+		List<String> inputData = null;
+		try {
+			inputData = fileLogic.getInputFile(inputFileName);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		if(inputData == null){
+			LogService.getInstance().logError(ErrorType.NULLINPUTDATA);
+		}
 	}
 
 	public static void Log(String message) {

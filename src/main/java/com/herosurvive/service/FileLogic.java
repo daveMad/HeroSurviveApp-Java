@@ -29,7 +29,7 @@ public class FileLogic {
 		this.fileNameWithPath = filePath;
 		this.logic = new InputLogic();
 	}
-	
+
 	public void read() {
 		try {
 			File f = new File("src/xx.txt");
@@ -64,9 +64,9 @@ public class FileLogic {
 
 		if (!new File(outputFile).exists())
 			App.Log(fileNotFoundMessage + " : " + outputFile + " A new file with this name'll be created");
-		
+
 		App.Log("");
-		
+
 		this.fileNameWithPath = outputFile;
 		Path path = Paths.get(outputFile);
 		write(path, getSampleData());
@@ -83,11 +83,29 @@ public class FileLogic {
 
 	public void writeSmall() throws IOException {
 		Path path = Paths.get(this.fileNameWithPath);
-		
+
 		write(path, getSampleData());
 	}
+
+	public List<String> getInputFile(String fileName) throws FileNotFoundException {
+		if(!fileExists(fileName))
+			throw new FileNotFoundException();
+		Path path = Paths.get(fileName);
+		List<String> inputData = null;
+		try {
+			inputData = read(path);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return inputData;
+	}
 	
-	
+	Boolean fileExists(String fileName){
+		return new File(fileName).exists();
+	}
+
 	List<String> read(Path path) throws IOException {
 		try {
 			if (!new File(this.fileNameWithPath).exists())
@@ -107,17 +125,11 @@ public class FileLogic {
 			e.printStackTrace();
 		}
 	}
-	
-	List<String> getSampleData(){
+
+	List<String> getSampleData() {
 		List<String> lines = new ArrayList<String>();
 		lines.add("amazed by writing skills!");
 		return lines;
 	}
-
-	public String getInputFile() {
-		List<String> inputData = read(path);
-		DataService.getInstance().setData(inputData);
-	}
-
 
 }

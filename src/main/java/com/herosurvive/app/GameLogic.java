@@ -31,7 +31,7 @@ public class GameLogic {
 		update();
 		// when execution is here, means that the game is done, and since the
 		// logger saves everything, we can print the result here;
-		
+		//fileLogic.wri
 	}
 
 	public void update() {
