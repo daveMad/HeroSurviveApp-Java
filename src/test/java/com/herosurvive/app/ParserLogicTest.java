@@ -40,4 +40,12 @@ public class ParserLogicTest {
 		int expected = 1681;
 		assertEquals(expected,ParserLogic.getInstance().extractNumber(inputArray));
 	}
+	
+	@Test
+	public void shouldReturnFalseIfLineContainsKeyword(){
+		String falseSample = "There is a Zombie at position 1681";
+		String trueSample = "Lion is Enemy";
+		assertEquals(true,ParserLogic.getInstance().checkIfContainsKeyword(trueSample, "Enemy"));
+		assertEquals(false, ParserLogic.getInstance().checkIfContainsKeyword(falseSample, "Enemy"));
+	}
 }
