@@ -63,8 +63,12 @@ public class ParserLogic {
 	public RandomData parseRandomLine(String str){
 		String[] array = str.split(" ");
 		for (String item : array) {
-			if(keywords.)
+			if(keywords.indexOf(item) != -1){
+				
+			}
 		}
+		
+		return null;
 	}
 	
 	public int parseSpecificLine(String resourceLine) { // Example : Resources are 7500
@@ -81,6 +85,15 @@ public class ParserLogic {
 
 	public String[] getKeywords() {
 		return "resources*hero*enemy*has*attack*there is a".split("\\*");
+	}
+	
+	int extractNumber(String[] inputArray){
+		for (String item : inputArray) {
+			if(checkIfNumber(item) == true)
+				return Integer.parseInt(item);
+		}
+		
+		return 0; // return 
 	}
 
 	Boolean checkIfNumber(String input) {
