@@ -21,7 +21,6 @@ public class GameMap {
 		}
 		
 		return null;
-		
 	}
 	
 	public Boolean heroAtEndPoint(){

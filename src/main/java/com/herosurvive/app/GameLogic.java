@@ -14,7 +14,8 @@ public class GameLogic {
 	Hero hero;
 
 	public GameLogic(Hero hero) {
-		// to do : set up game map with the parameters, the ettity classes, then
+		// to do : initialize game map with the parameters, the entity classes,
+		// then
 		// invoke update()
 		this.hero = hero;
 	}
@@ -80,7 +81,7 @@ public class GameLogic {
 				herosTurn = false;
 			}
 
-			else {
+			else if (!herosTurn) {
 				enemy.attack(hero);
 				herosTurn = true;
 			}

@@ -19,7 +19,6 @@ public class Hero extends Entity implements IHero {
 	}
 
 	public void attack(ICharacter target) {
-
 		target.takeDamage(this.attackPoint);
 
 	}

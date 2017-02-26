@@ -33,7 +33,8 @@ public class GameLogicTest {
 
 		GameLogic logic = new GameLogic(hero);
 		assertEquals(false, logic.startBattle(enemy));
-
+		App.Log(hero.toString());
+		App.Log(enemy.toString());
 	}
 	
 	@Test
@@ -43,7 +44,8 @@ public class GameLogicTest {
 
 		GameLogic logic = new GameLogic(hero);
 		assertEquals(true, logic.startBattle(enemy));
-
+		App.Log(hero.toString());
+		App.Log(enemy.toString());
 	}
 
 }
