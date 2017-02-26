@@ -17,6 +17,7 @@ public class LogService {
 
 	private LogService() {
 		fullOutput = new ArrayList<String>();
+		this.errorMessages = new ArrayList<String>();
 	}
 
 	public static synchronized LogService getInstance() {

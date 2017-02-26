@@ -23,7 +23,7 @@ public class App {
 		logic.start();
 	}
 
-	void HandleInput() {
+	public static void HandleInput() {
 		String inputFileMessage = "Please enter your input file : (e.g : C:/test.input)";
 		String outputFileMessage = "Please enter your output file : (e.g : C:/test.output)";
 		InputLogic input = new InputLogic();
@@ -45,6 +45,7 @@ public class App {
 		} 
 		if(inputData == null){
 			LogService.getInstance().logError(ErrorType.NULLINPUTDATA);
+			return; // program ends here
 		}
 	}
 
