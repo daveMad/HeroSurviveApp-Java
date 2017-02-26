@@ -1,5 +1,6 @@
 package com.herosurvive.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -38,14 +39,23 @@ public class ParserLogic {
 	}
 	
 	public List<Enemy> extractEnemies(List<String> inputData){
+		List<Enemy> enemies = new ArrayList<Enemy>();
 		int index = 3; // enemy declaration starts at Line 4 = index 3
 		while(index < inputData.size()){
-			
+			for (String item : inputData) {
+				if(checkIfContainsKeyword(item, "Enemy")){
+					// extract & add the enemy to the return result list
+				}
+			}
 		}
 		
 		return null;
 	}
-
+	
+	public Enemy extractEnemy(String line){ // extract the enemy name w
+		
+	}
+	
 	class RandomData {
 		String propName;
 		Object value;
