@@ -47,6 +47,8 @@ public class App {
 			LogService.getInstance().logError(ErrorType.NULLINPUTDATA);
 			return; // program ends here
 		}
+		
+		//DataService.setInputData(inputData);
 	}
 
 	public static void Log(String message) {
