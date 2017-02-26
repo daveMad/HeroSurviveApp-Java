@@ -29,5 +29,15 @@ public class GameMapTest {
 		return enemies;
 
 	}
+	
+	@Test 
+	public void shouldArriveEndPoint(){
+		Hero hero = new Hero(10, 100, 40);
+		int mapEndPosition = 25;
+
+		GameMap map = new GameMap(hero, getSampleEnemies(), mapEndPosition);
+		hero.moveRange(15);
+		assertTrue(map.heroAtEndPoint());
+	}
 
 }
