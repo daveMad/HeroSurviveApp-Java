@@ -29,7 +29,7 @@ public class FileLogic {
 		this.fileNameWithPath = filePath;
 		this.logic = new InputLogic();
 	}
-
+	
 	public void read() {
 		try {
 			File f = new File("src/xx.txt");
@@ -112,6 +112,11 @@ public class FileLogic {
 		List<String> lines = new ArrayList<String>();
 		lines.add("amazed by writing skills!");
 		return lines;
+	}
+
+	public String getInputFile() {
+		List<String> inputData = read(path);
+		DataService.getInstance().setData(inputData);
 	}
 
 
