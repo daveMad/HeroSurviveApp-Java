@@ -1,5 +1,6 @@
 package com.herosurvive.service;
 
+import java.util.Arrays;
 import java.util.List;
 
 import com.herosurvice.models.Enemy;
@@ -9,10 +10,10 @@ public class ParserLogic {
 	private static ParserLogic _parser;
 
 	public ParsedData parsedData;
-	String[] keywords;
+	List<String> keywords;
 
 	private ParserLogic() {
-		keywords = getKeywords();
+		keywords = Arrays.asList(getKeywords());
 	}
 
 	public static synchronized ParserLogic getInstance() {
@@ -37,7 +38,34 @@ public class ParserLogic {
 		// get the known number of enemies position
 	}
 	
+	class RandomData{
+		String propName;
+		int value;
+		
+		public int getValue() {
+			return value;
+		}
+
+		public void setValue(int value) {
+			this.value = value;
+		}
+
+		public String getPropName() {
+			return propName;
+		}
+
+		public void setPropName(String propName) {
+			this.propName = propName;
+		}
+		
+	}
 	
+	public RandomData parseRandomLine(String str){
+		String[] array = str.split(" ");
+		for (String item : array) {
+			if(keywords.)
+		}
+	}
 	
 	public int parseSpecificLine(String resourceLine) { // Example : Resources are 7500
 															// meters away
