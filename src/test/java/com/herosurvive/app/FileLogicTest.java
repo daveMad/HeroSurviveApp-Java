@@ -53,4 +53,10 @@ public class FileLogicTest {
 			e.printStackTrace();
 		}
 	}
+	
+	@Test public void shoultWriteToOutputFile(){
+		logic = new FileLogic("");
+		logic.writeOutput("src/output.output", null);
+		assertTrue(true);
+	}
 }

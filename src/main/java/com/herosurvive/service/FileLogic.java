@@ -74,6 +74,9 @@ public class FileLogic {
 	}
 	
 	public void writeOutput(String outputFile,List<String> outputData){
+		if(outputData == null)
+			outputData = getSampleData();
+		
 		Path path = Paths.get(outputFile);
 		write(path,outputData);
 	}
