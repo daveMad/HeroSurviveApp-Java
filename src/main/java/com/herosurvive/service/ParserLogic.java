@@ -45,6 +45,7 @@ public class ParserLogic {
 			for (String item : inputData) {
 				if(checkIfContainsKeyword(item, "Enemy")){
 					// extract & add the enemy to the return result list
+					
 				}
 			}
 		}
@@ -52,8 +53,9 @@ public class ParserLogic {
 		return null;
 	}
 	
-	public Enemy extractEnemyName(String line){ // extract the enemy name w
-		return new Enemy(line.substring(0,line.indexOf("")));
+	public Enemy extractEnemy(String line){ // extract the enemy name w
+		
+		return new Enemy(line.substring(0,line.indexOf(" ")));
 	}
 	
 	class RandomData {

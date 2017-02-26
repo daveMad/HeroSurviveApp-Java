@@ -48,4 +48,12 @@ public class ParserLogicTest {
 		assertEquals(true,ParserLogic.getInstance().checkIfContainsKeyword(trueSample, "Enemy"));
 		assertEquals(false, ParserLogic.getInstance().checkIfContainsKeyword(falseSample, "Enemy"));
 	}
+	
+	@Test
+	public void shouldExtractEnemyWithName(){
+		String line = "Lion is Enemy";
+		String expected = "Lion";
+		String actual = ParserLogic.getInstance().extractEnemy(line).name;
+		assertTrue("Not true!", expected.equals(actual));
+	}
 }

@@ -12,7 +12,7 @@ public class Enemy extends Entity implements ICharacter {
 	public Enemy(String name) {
 		if (name == "")
 			this.name = "Default Enemy Name";
-
+		this.name = name;
 	}
 
 	public void attack(ICharacter target) {
