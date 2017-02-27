@@ -42,125 +42,145 @@ public class ParserLogic {
 		// get the known number of enemies position
 	}
 
+	class EnemyDto {
+		public int hp;
+		public int position;
+		public int attackPoint;
+		public String name;
+
+		public EnemyDto(String name) {
+			this.name = name;
+		}
+	}
+
 	public List<Enemy> extractEnemies(List<String> inputData) {
-		List<Enemy> enemies = new ArrayList<Enemy>();
-		List<String> enemyTypes = new ArrayList<String>();
+		List<Enemy> enemies;
+		List<EnemyDto> enemyTypes = new ArrayList<EnemyDto>();
+
+		int totalEnemyType = 0;
 		int currentIndex = 3; // enemy(name) declaration starts at Line 4 =
 								// index 3
-		int totalEnemyNumber = 0;
 		for (String item : inputData) {
 			if (checkIfContainsKeyword(item, "Enemy")) {
-				// extract & add the enemy to the return result list
-
-				// enemies.add(extractEnemy(item));
-				// totalEnemyNumber += 1;
+				// extract & add the enemy type with names
+				enemyTypes.add(new EnemyDto(extractEnemyType(item)));
+				totalEnemyType += 1;
 			}
 		}
-		currentIndex += totalEnemyNumber;
-		for (int i = 0; i < enemies.size(); i++) {
-			// now we have enemies with names foreach enemy, get the 2
+
+		currentIndex += totalEnemyType;
+		for (int i = 0; i < enemyTypes.size(); i++) {
+			// now we have enemies with names, foreach enemy, get the 2
 			// lines(i,i+1) =>
 			// extract hp & attackPoint from those 2 lines, respectively
 			int currentEnemyHp = parseSpecificLine(inputData.get(currentIndex));
 			int currentEnemyAttack = parseSpecificLine(inputData.get(currentIndex + 1));// attack
 																						// line
-			enemies.get(i).hp = currentEnemyHp;
-			enemies.get(i).attackPoint = currentEnemyAttack;
+			enemyTypes.get(i).hp = currentEnemyHp;
+			enemyTypes.get(i).attackPoint = currentEnemyAttack;
 			currentIndex += 2; // because we have 2 lines respectively for 1
 								// enemy, increase index by 2
-
 		}
-		// currentIndex += 2; // now time to get the positions of the enemies,
-		// again respectively
-		// for (int i = 0; i < enemies.size(); i++) {
-		// int currentPosition = parseSpecificLine(inputData.get(currentIndex))
-		// }
+
+		//currentIndex += 2; // now time to get the positions of the enemies,again respectively
+		enemies = generateEnemiesWithPosition(inputData, currentIndex);
+
+		for (EnemyDto item : enemyTypes) {
+			for (int i = 0; i < enemies.size(); i++) {
+				Enemy currentEnemy = enemies.get(i);
+				if (currentEnemy.name.equals(item.name)) {
+					currentEnemy.hp = item.hp;
+					currentEnemy.attackPoint = item.attackPoint;
+					
+				}
+			}
+		}
 
 		return enemies;
 	}
-	
-	public List<Enemy> generateEnemiesWithPosition(List<String> inputData){
+
+	public List<Enemy> generateEnemiesWithPosition(List<String> inputData,int startingIndex) {
 		List<Enemy> enemies = new ArrayList<Enemy>();
-		for (String line : inputData) {
-			Enemy current = new Enemy(extractEnemyWithPosition(line));
-			enemies.add(current);
+		List<String> relatedLines = inputData.subList(startingIndex, inputData.size());
+		for (String line : relatedLines) {
+			line = line.trim();
+			if (!line.equals(""))
+				enemies.add(extractEnemyWithPosition(line));
 		}
-		
 		return enemies;
 	}
 
+	
 	public Enemy extractEnemyWithPosition(String line) {
 		List<String> array = Arrays.asList(line.split(" "));
 		String keys = "There is a at position";
 		List<String> result = new ArrayList<String>();
 		for (String item : array) {
-			if (keys.indexOf(item) != -1)
-				App.Log("Should be removed!" + item);
+			if (keys.indexOf(item) != -1){
+//				App.Log("Should be removed!" + item);
+				
+			}
 			else {
-				App.Log("Stay!" + item);
+			//	App.Log("Stay!" + item);
 				result.add(item);
 			}
 		}
-		Enemy enemy = new Enemy(result.get(0),Integer.parseInt(result.get(1)));
+		Enemy enemy = new Enemy(result.get(0), Integer.parseInt(result.get(1)));
 		return enemy;
 	}
 
-	public Enemy extractEnemy(String line) { // extract the enemy name w
-		return new Enemy(line.substring(0, line.indexOf(" ")));
+	public String extractEnemyType(String line) { // extract the enemy name w
+		return line.substring(0, line.indexOf(" "));
 	}
 
-	/*class RandomData {
-		String propName;
-		Object value;
+	/*
+	 * class RandomData { String propName; Object value;
+	 * 
+	 * public String getPropName() { return propName; }
+	 * 
+	 * public void setPropName(String propName) { this.propName = propName; }
+	 * 
+	 * }
+	 */
 
-		public String getPropName() {
-			return propName;
-		}
-
-		public void setPropName(String propName) {
-			this.propName = propName;
-		}
-
-	}*/
-
-	//public RandomData parseRandomLine(String str) {
-	//	RandomData result = new RandomData();
-	//	String[] array = str.split(" ");
-	//	for (String item : array) {
-	//		item = item.toLowerCase();
-	//		if (keywords.indexOf(item) != -1) {
-	//			String temp = keywords.get(keywords.indexOf(item));
-	//			if (temp == "enemy") { // due to jdk 1.8 possible issues, used
-	//									// if blocks instead of switch
-	//				result.propName = "Enemy.name";
-	//				result.value = array[0]; // *Bug* is Enemy
-	//			} else if (temp == "has") {
-	//				result.propName = "Enemy.hp";
-	//				result.value = Integer.parseInt(array[2]); // hp value
-	//															// stands right
-	//															// before the
-	//															// last word of
-	//															// the sentence
-	//			} else if (temp == "attack") {
-	//				result.propName = "Enemy.attackPoint";
-	//				result.value = Integer.parseInt(array[array.length - 1]); // attack
-	//																			// is
-	//																			// the
-	//																			// last
-	//																			// word
-	//			} else if (temp == "position") {
-	//				result.propName = "Enemy.position";
-	//				result.value = Integer.parseInt(array[array.length - 1]); // position
-	//																			// is
-	//																			// the
-	//																			// last
-	//																			// word
-	//			}
-	//		}
-	//	}
-    //
-	//	return null;
-	//}
+	// public RandomData parseRandomLine(String str) {
+	// RandomData result = new RandomData();
+	// String[] array = str.split(" ");
+	// for (String item : array) {
+	// item = item.toLowerCase();
+	// if (keywords.indexOf(item) != -1) {
+	// String temp = keywords.get(keywords.indexOf(item));
+	// if (temp == "enemy") { // due to jdk 1.8 possible issues, used
+	// // if blocks instead of switch
+	// result.propName = "Enemy.name";
+	// result.value = array[0]; // *Bug* is Enemy
+	// } else if (temp == "has") {
+	// result.propName = "Enemy.hp";
+	// result.value = Integer.parseInt(array[2]); // hp value
+	// // stands right
+	// // before the
+	// // last word of
+	// // the sentence
+	// } else if (temp == "attack") {
+	// result.propName = "Enemy.attackPoint";
+	// result.value = Integer.parseInt(array[array.length - 1]); // attack
+	// // is
+	// // the
+	// // last
+	// // word
+	// } else if (temp == "position") {
+	// result.propName = "Enemy.position";
+	// result.value = Integer.parseInt(array[array.length - 1]); // position
+	// // is
+	// // the
+	// // last
+	// // word
+	// }
+	// }
+	// }
+	//
+	// return null;
+	// }
 
 	public int parseSpecificLine(String resourceLine) { // Example : Resources
 														// are 7500

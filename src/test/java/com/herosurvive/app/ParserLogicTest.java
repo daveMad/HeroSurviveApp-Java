@@ -3,6 +3,7 @@ package com.herosurvive.app;
 import static org.junit.Assert.*;
 
 import java.util.List;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,13 +17,23 @@ import com.herosurvive.service.ParserLogic;
 public class ParserLogicTest {
 	
 	@Test
+	public void shouldExtractEnemiesByInputData() throws FileNotFoundException{
+		FileLogic logic = new FileLogic("");
+		List<String> inputData = logic.getInputFile("src/test.input");
+		List<Enemy> enemies = ParserLogic.getInstance().extractEnemies(inputData);
+		for (Enemy enemy : enemies) {
+			App.Log(enemy.toString());
+		}
+	}
+	
+	/*@Test
 	public void shouldExtractEnemyWithNameAndPosition(){
 		Enemy enemy = ParserLogic.getInstance().extractEnemyWithPosition("There is a Zombie at position 1681");
 		assertEquals("Zombie", enemy.name);
 		assertEquals(1681, enemy.position);
 	}
 	
-	/*@Test
+	@Test
 	public void shouldExtractEnemyWithPosition() {
 		String line = "There is a Zombie at position 3523";
 		String[] expected = { "Zombie", "3523" };
