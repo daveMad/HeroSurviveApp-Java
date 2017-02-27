@@ -3,11 +3,13 @@ package com.herosurvive.service;
 import java.nio.channels.SelectableChannel;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import com.herosurvice.models.Enemy;
 import com.herosurvice.models.ParsedData;
+import com.herosurvive.app.App;
 
 public class ParserLogic {
 	private static ParserLogic _parser;
@@ -43,48 +45,56 @@ public class ParserLogic {
 	public List<Enemy> extractEnemies(List<String> inputData) {
 		List<Enemy> enemies = new ArrayList<Enemy>();
 		List<String> enemyTypes = new ArrayList<String>();
-		int currentIndex = 3; // enemy(name) declaration starts at Line 4 = index 3
+		int currentIndex = 3; // enemy(name) declaration starts at Line 4 =
+								// index 3
 		int totalEnemyNumber = 0;
 		for (String item : inputData) {
 			if (checkIfContainsKeyword(item, "Enemy")) {
 				// extract & add the enemy to the return result list
-				
+
 				// enemies.add(extractEnemy(item));
 				// totalEnemyNumber += 1;
 			}
 		}
 		currentIndex += totalEnemyNumber;
 		for (int i = 0; i < enemies.size(); i++) {
-			// now we have enemies with names foreach enemy, get the 2 lines(i,i+1) => 
+			// now we have enemies with names foreach enemy, get the 2
+			// lines(i,i+1) =>
 			// extract hp & attackPoint from those 2 lines, respectively
 			int currentEnemyHp = parseSpecificLine(inputData.get(currentIndex));
-			int currentEnemyAttack = parseSpecificLine(inputData.get(currentIndex+1));// attack always stands belows the hp line
-			enemies.get(i).hp = currentEnemyHp; enemies.get(i).attackPoint = currentEnemyAttack;
-			currentIndex += 2; // because we have 2 lines respectively for 1 enemy, increase index by 2
-			
+			int currentEnemyAttack = parseSpecificLine(inputData.get(currentIndex + 1));// attack
+																						// line
+			enemies.get(i).hp = currentEnemyHp;
+			enemies.get(i).attackPoint = currentEnemyAttack;
+			currentIndex += 2; // because we have 2 lines respectively for 1
+								// enemy, increase index by 2
+
 		}
-		//currentIndex += 2; // now time to get the positions of the enemies, again respectively
-		//for (int i = 0; i < enemies.size(); i++) {
-		//	int currentPosition = parseSpecificLine(inputData.get(currentIndex))
-		//}
-		
+		// currentIndex += 2; // now time to get the positions of the enemies,
+		// again respectively
+		// for (int i = 0; i < enemies.size(); i++) {
+		// int currentPosition = parseSpecificLine(inputData.get(currentIndex))
+		// }
+
 		return enemies;
 	}
+	
+	
 
 	public List<String> extractEnemyWithPosition(String line) {
-		List<String> words = Arrays.asList(line.split(" "));
-		String[] unnecessaryWords = {"There","is","a","at","position"};
-		for (String string : unnecessaryWords) {
-			words = words.stream().filter(p -> p != string).collect(Collectors.toCollection(ArrayList::new));
-			
+		List<String> array = Arrays.asList(line.split(" "));
+		String keys = "There is a at position";
+		List<String> result = new ArrayList<String>();
+
+		for (String item : array) {
+			if (keys.indexOf(item) != -1)
+				App.Log("Should be removed!" + item);
+			else {
+				App.Log("Stay!" + item);
+				result.add(item);
+			}
 		}
-		for (int i = 0; i < unnecessaryWords.length; i++) {
-	
-		}
-		return words;
-		//List<Enemy> result = new ArrayList<Enemy>();
-		
-		
+		return result;
 	}
 
 	public Enemy extractEnemy(String line) { // extract the enemy name w

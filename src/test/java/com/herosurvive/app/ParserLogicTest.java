@@ -13,7 +13,24 @@ import com.herosurvive.service.FileLogic;
 import com.herosurvive.service.ParserLogic;
 
 public class ParserLogicTest {
-
+	
+	@Test
+	public void shouldExtractEnemyWithNameAndPosition(){
+		List<String> data = ParserLogic.getInstance().extractEnemyWithPosition("There is a Zombie at position 1681");
+		for (String string : data) {
+			App.Log("Result String :: "+string);
+		}
+	}
+	
+	/*@Test
+	public void shouldExtractEnemyWithPosition() {
+		String line = "There is a Zombie at position 3523";
+		String[] expected = { "Zombie", "3523" };
+		//List<String> data = ParserLogic.getInstance().extractEnemyWithPosition(line);
+		App.Log("mm => "+ParserLogic.getInstance().extractEnemyWithPosition(line));
+		// assertTrue(expected.equals(data.toArray(new String[0])));
+	}
+	
 	@Test
 	public void shouldGenerateKeywords() {
 		String[] data = ParserLogic.getInstance().getKeywords();
@@ -33,27 +50,27 @@ public class ParserLogicTest {
 			assertEquals(expected, actual);
 		}
 	}
-	
+
 	@Test
-	public void shouldExtractNumberFromStringArray(){
+	public void shouldExtractNumberFromStringArray() {
 		String[] inputArray = "There is a Zombie at position 1681".split(" ");
 		int expected = 1681;
-		assertEquals(expected,ParserLogic.getInstance().extractNumber(inputArray));
+		assertEquals(expected, ParserLogic.getInstance().extractNumber(inputArray));
 	}
-	
+
 	@Test
-	public void shouldReturnFalseIfLineContainsKeyword(){
+	public void shouldReturnFalseIfLineContainsKeyword() {
 		String falseSample = "There is a Zombie at position 1681";
 		String trueSample = "Lion is Enemy";
-		assertEquals(true,ParserLogic.getInstance().checkIfContainsKeyword(trueSample, "Enemy"));
+		assertEquals(true, ParserLogic.getInstance().checkIfContainsKeyword(trueSample, "Enemy"));
 		assertEquals(false, ParserLogic.getInstance().checkIfContainsKeyword(falseSample, "Enemy"));
 	}
-	
+
 	@Test
-	public void shouldExtractEnemyWithName(){
+	public void shouldExtractEnemyWithName() {
 		String line = "Lion is Enemy";
 		String expected = "Lion";
 		String actual = ParserLogic.getInstance().extractEnemy(line).name;
 		assertTrue("Not true!", expected.equals(actual));
-	}
+	}*/
 }
