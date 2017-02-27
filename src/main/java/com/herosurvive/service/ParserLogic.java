@@ -1,8 +1,10 @@
 package com.herosurvive.service;
 
+import java.nio.channels.SelectableChannel;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.herosurvice.models.Enemy;
 import com.herosurvice.models.ParsedData;
@@ -37,27 +39,58 @@ public class ParserLogic {
 
 		// get the known number of enemies position
 	}
-	
-	public List<Enemy> extractEnemies(List<String> inputData){
+
+	public List<Enemy> extractEnemies(List<String> inputData) {
 		List<Enemy> enemies = new ArrayList<Enemy>();
-		int index = 3; // enemy declaration starts at Line 4 = index 3
-		while(index < inputData.size()){
-			for (String item : inputData) {
-				if(checkIfContainsKeyword(item, "Enemy")){
-					// extract & add the enemy to the return result list
-					
-				}
+		List<String> enemyTypes = new ArrayList<String>();
+		int currentIndex = 3; // enemy(name) declaration starts at Line 4 = index 3
+		int totalEnemyNumber = 0;
+		for (String item : inputData) {
+			if (checkIfContainsKeyword(item, "Enemy")) {
+				// extract & add the enemy to the return result list
+				
+				// enemies.add(extractEnemy(item));
+				// totalEnemyNumber += 1;
 			}
 		}
+		currentIndex += totalEnemyNumber;
+		for (int i = 0; i < enemies.size(); i++) {
+			// now we have enemies with names foreach enemy, get the 2 lines(i,i+1) => 
+			// extract hp & attackPoint from those 2 lines, respectively
+			int currentEnemyHp = parseSpecificLine(inputData.get(currentIndex));
+			int currentEnemyAttack = parseSpecificLine(inputData.get(currentIndex+1));// attack always stands belows the hp line
+			enemies.get(i).hp = currentEnemyHp; enemies.get(i).attackPoint = currentEnemyAttack;
+			currentIndex += 2; // because we have 2 lines respectively for 1 enemy, increase index by 2
+			
+		}
+		//currentIndex += 2; // now time to get the positions of the enemies, again respectively
+		//for (int i = 0; i < enemies.size(); i++) {
+		//	int currentPosition = parseSpecificLine(inputData.get(currentIndex))
+		//}
 		
-		return null;
+		return enemies;
 	}
+
+	public List<String> extractEnemyWithPosition(String line) {
+		List<String> words = Arrays.asList(line.split(" "));
+		String[] unnecessaryWords = {"There","is","a","at","position"};
+		for (String string : unnecessaryWords) {
+			words = words.stream().filter(p -> p != string).collect(Collectors.toCollection(ArrayList::new));
+			
+		}
+		for (int i = 0; i < unnecessaryWords.length; i++) {
 	
-	public Enemy extractEnemy(String line){ // extract the enemy name w
+		}
+		return words;
+		//List<Enemy> result = new ArrayList<Enemy>();
 		
-		return new Enemy(line.substring(0,line.indexOf(" ")));
+		
 	}
-	
+
+	public Enemy extractEnemy(String line) { // extract the enemy name w
+		return new Enemy(line.substring(0, line.indexOf(" ")));
+	}
+
 	class RandomData {
 		String propName;
 		Object value;
@@ -72,29 +105,42 @@ public class ParserLogic {
 
 	}
 
-	public RandomData parseRandomLine(String str){
+	public RandomData parseRandomLine(String str) {
 		RandomData result = new RandomData();
 		String[] array = str.split(" ");
 		for (String item : array) {
 			item = item.toLowerCase();
-			if(keywords.indexOf(item) != -1){
-				String temp =keywords.get(keywords.indexOf(item));
-				if(temp == "enemy"){ // due to jdk 1.8 possible issues, used if blocks instead of switch
+			if (keywords.indexOf(item) != -1) {
+				String temp = keywords.get(keywords.indexOf(item));
+				if (temp == "enemy") { // due to jdk 1.8 possible issues, used
+										// if blocks instead of switch
 					result.propName = "Enemy.name";
 					result.value = array[0]; // *Bug* is Enemy
-				}else if(temp == "has"){
+				} else if (temp == "has") {
 					result.propName = "Enemy.hp";
-					result.value = Integer.parseInt(array[2]); // hp value stands right before the last word of the sentence
-				} else if(temp == "attack"){
+					result.value = Integer.parseInt(array[2]); // hp value
+																// stands right
+																// before the
+																// last word of
+																// the sentence
+				} else if (temp == "attack") {
 					result.propName = "Enemy.attackPoint";
-					result.value = Integer.parseInt(array[array.length - 1]); // attack is the last word
-				} else if(temp == "position"){
+					result.value = Integer.parseInt(array[array.length - 1]); // attack
+																				// is
+																				// the
+																				// last
+																				// word
+				} else if (temp == "position") {
 					result.propName = "Enemy.position";
-					result.value = Integer.parseInt(array[array.length - 1]); // position is the last word
+					result.value = Integer.parseInt(array[array.length - 1]); // position
+																				// is
+																				// the
+																				// last
+																				// word
 				}
 			}
 		}
-		
+
 		return null;
 	}
 
@@ -110,8 +156,8 @@ public class ParserLogic {
 
 		return 0; //
 	}
-	
-	public Boolean checkIfContainsKeyword(String line,String keyword){
+
+	public Boolean checkIfContainsKeyword(String line, String keyword) {
 		List<String> words = Arrays.asList(line.split(" "));
 		return words.indexOf(keyword) != -1;
 	}
