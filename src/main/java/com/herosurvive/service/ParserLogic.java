@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.herosurvice.models.Enemy;
+import com.herosurvice.models.Hero;
 import com.herosurvice.models.ParsedData;
 import com.herosurvive.app.App;
 
@@ -19,6 +20,7 @@ public class ParserLogic {
 
 	private ParserLogic() {
 		keywords = Arrays.asList(getKeywords());
+		parsedData = new ParsedData();
 	}
 
 	public static synchronized ParserLogic getInstance() {
@@ -33,6 +35,7 @@ public class ParserLogic {
 		// Hero.attackpoint & 2-EnemyEndPoint = Enemy declaration &
 		// EnemyEndPoint-FileEndPoint = Enemies.forEach(e => return e.position)
 		parsedData.resourcePoint = parseSpecificLine(inputData.get(0));
+		parsedData.hero = new Hero(0, 0, 0);
 		parsedData.hero.hp = parseSpecificLine(inputData.get(1));
 		parsedData.hero.attackPoint = parseSpecificLine(inputData.get(2));
 		// now get each enemy of unknown number
@@ -70,11 +73,20 @@ public class ParserLogic {
 			// now we have enemies with names, foreach enemy, get the 2
 			// lines(i,i+1) =>
 			// extract hp & attackPoint from those 2 lines, respectively
+			String currentenemyTypeFromLine = extractEnemyType(inputData.get(currentIndex));
 			int currentEnemyHp = parseSpecificLine(inputData.get(currentIndex));
 			int currentEnemyAttack = parseSpecificLine(inputData.get(currentIndex + 1));// attack
-																						// line
-			enemyTypes.get(i).hp = currentEnemyHp;
-			enemyTypes.get(i).attackPoint = currentEnemyAttack;
+			for (EnemyDto enemyDto : enemyTypes) {
+				if(enemyDto.name.equals(currentenemyTypeFromLine)){
+					enemyDto.hp = currentEnemyHp;
+					enemyDto.attackPoint = currentEnemyAttack;
+				}
+			}
+			
+			
+			// line
+			//enemyTypes.get(i).hp = currentEnemyHp;
+			//enemyTypes.get(i).attackPoint = currentEnemyAttack;
 			currentIndex += 2; // because we have 2 lines respectively for 1
 								// enemy, increase index by 2
 		}

@@ -96,14 +96,11 @@ public class FileLogic {
 	}
 
 	public List<String> getInputFile(String fileName) throws FileNotFoundException {
-		//if(!fileExists(fileName))
-			//throw new FileNotFoundException();
 		Path path = Paths.get(fileName);
 		List<String> inputData = null;
 		try {
 			inputData = read(path);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -115,17 +112,8 @@ public class FileLogic {
 	}
 
 	public List<String> read(Path path) throws IOException {
-		/*try {
-			if (!new File(this.fileNameWithPath).exists())
-				throw new FileNotFoundException(this.fileNotFoundMessage);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 		return Files.readAllLines(path);
 	}
-	
-	
 	
 	void write(Path path, List<String> data) {
 		try {

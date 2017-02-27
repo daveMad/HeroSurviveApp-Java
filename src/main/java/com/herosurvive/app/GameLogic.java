@@ -1,9 +1,5 @@
 package com.herosurvive.app;
 
-import java.awt.List;
-import java.util.ArrayList;
-
-import javax.swing.text.html.HTMLEditorKit.Parser;
 
 import com.herosurvice.models.*;
 import com.herosurvive.service.*;
@@ -25,7 +21,7 @@ public class GameLogic {
 		// call update method, set flag
 		if (map == null) {
 			map = new GameMap(this.hero, ParserLogic.getInstance().parsedData.enemies, ParserLogic.getInstance().parsedData.resourcePoint);
-			return;
+			
 		}
 		LogService.getInstance().logStart(this.hero);
 		finished = false;
@@ -43,6 +39,7 @@ public class GameLogic {
 			if (map.heroAtEndPoint()) {
 				LogService.getInstance().logWin(this.hero);
 				logResult();
+				finished = true;
 			}
 			Enemy enemy = (Enemy) map.checkInterception();
 			if (enemy != null) { // to do : start an attack
@@ -66,7 +63,7 @@ public class GameLogic {
 	public Boolean startBattle(Enemy enemy) { // to do : return true if hero
 												// survives
 		Boolean battleFinished = false;
-		Boolean herosTurn = true; // at the beginning, player should attack
+		Boolean herosTurn = false; // at the beginning, player should attack
 									// first
 		while (!battleFinished) {
 			if (hero.hp <= 0) {

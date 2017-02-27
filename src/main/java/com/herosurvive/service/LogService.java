@@ -62,7 +62,7 @@ public class LogService {
 	}
 
 	public void logStart(Hero hero) {
-		String message = "Hero started journey with " + hero.hp + "HP!";
+		String message = "Hero started journey with " + hero.hp + " HP!";
 		App.Log(message);
 		add(message);
 	}

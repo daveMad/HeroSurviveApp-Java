@@ -14,11 +14,10 @@ import com.herosurvive.service.*;;
 public class App {
 	public static void main(String[] args) {
 
-		System.out.println("Hello World!");
 		// first get inputs for filenames,
 		// then start the game
 		HandleInput();
-		GameLogic logic = new GameLogic(new Hero(12, 100, 10));
+		GameLogic logic = new GameLogic(ParserLogic.getInstance().parsedData.hero);
 		logic.start();
 	}
 
@@ -46,7 +45,10 @@ public class App {
 			LogService.getInstance().logError(ErrorType.NULLINPUTDATA);
 			return; // program ends here
 		}
-
+		
+		ParserLogic.getInstance().parseWholeFile(inputData);
+		
+		
 		// DataService.setInputData(inputData);
 	}
 
