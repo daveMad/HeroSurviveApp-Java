@@ -80,9 +80,13 @@ public class ParserLogic {
 	}
 	
 	public List<Enemy> generateEnemiesWithPosition(List<String> inputData){
+		List<Enemy> enemies = new ArrayList<Enemy>();
 		for (String line : inputData) {
-			Enemy current = new Enemy(extractEnemyWithPosition(line)
+			Enemy current = new Enemy(extractEnemyWithPosition(line));
+			enemies.add(current);
 		}
+		
+		return enemies;
 	}
 
 	public Enemy extractEnemyWithPosition(String line) {
