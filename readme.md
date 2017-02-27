@@ -1,5 +1,8 @@
 # Hero Survive App
 
+## Anahtar Kelimeler
+- **Java, Jre1.8, Maven, JUnit4.x, Eclipse, OOP, Console Application**
+
 ## Nasıl Çalıştırılır?
 - Bu bir konsol uygulamasıdır.Çalıştırmak için ana dizinde yer alan, **heroapp.jar** adlı dosyayı kullanabilirsiniz. Dosyayı indirdikten sonra bulunduğu klasörde komut istemini açın ve şu komutu girin : `java -jar heroapp.jar`
 
