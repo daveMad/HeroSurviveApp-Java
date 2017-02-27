@@ -6,6 +6,8 @@ import java.util.List;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.junit.Test;
 
 import com.herosurvice.models.Enemy;
@@ -24,41 +26,21 @@ public class ParserLogicTest {
 		}
 	}
 	
-	/*@Test
+	@Test
 	public void shouldExtractEnemyWithNameAndPosition(){
 		Enemy enemy = ParserLogic.getInstance().extractEnemyWithPosition("There is a Zombie at position 1681");
 		assertEquals("Zombie", enemy.name);
 		assertEquals(1681, enemy.position);
 	}
 	
-	@Test
-	public void shouldExtractEnemyWithPosition() {
-		String line = "There is a Zombie at position 3523";
-		String[] expected = { "Zombie", "3523" };
-		//List<String> data = ParserLogic.getInstance().extractEnemyWithPosition(line);
-		App.Log("mm => "+ParserLogic.getInstance().extractEnemyWithPosition(line));
-		// assertTrue(expected.equals(data.toArray(new String[0])));
-	}
 	
 	@Test
 	public void shouldGenerateKeywords() {
 		String[] data = ParserLogic.getInstance().getKeywords();
-		for (String item : data) {
-			App.Log(item);
-		}
+		assertTrue(data.length > 0);
 	}
 
-	@Test
-	public void shouldExtractNumber() throws IOException {
-		int expected = 0;
-		Path path = Paths.get("src/sample-input1.txt");
-		FileLogic file = new FileLogic("");
-		List<String> inputData = file.read(path);
-		for (String item : inputData) {
-			int actual = ParserLogic.getInstance().parseSpecificLine(item);
-			assertEquals(expected, actual);
-		}
-	}
+	
 
 	@Test
 	public void shouldExtractNumberFromStringArray() {
@@ -79,7 +61,7 @@ public class ParserLogicTest {
 	public void shouldExtractEnemyWithName() {
 		String line = "Lion is Enemy";
 		String expected = "Lion";
-		String actual = ParserLogic.getInstance().extractEnemy(line).name;
+		String actual = ParserLogic.getInstance().extractEnemyType(line);
 		assertTrue("Not true!", expected.equals(actual));
-	}*/
+	}
 }

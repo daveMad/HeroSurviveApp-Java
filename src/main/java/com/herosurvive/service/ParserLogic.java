@@ -1,16 +1,12 @@
 package com.herosurvive.service;
 
-import java.nio.channels.SelectableChannel;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.herosurvice.models.Enemy;
 import com.herosurvice.models.Hero;
 import com.herosurvice.models.ParsedData;
-import com.herosurvive.app.App;
 
 public class ParserLogic {
 	private static ParserLogic _parser;
@@ -84,15 +80,10 @@ public class ParserLogic {
 			}
 			
 			
-			// line
-			//enemyTypes.get(i).hp = currentEnemyHp;
-			//enemyTypes.get(i).attackPoint = currentEnemyAttack;
 			currentIndex += 2; // because we have 2 lines respectively for 1
 								// enemy, increase index by 2
 		}
 
-		// currentIndex += 2; // now time to get the positions of the
-		// enemies,again respectively
 		enemies = generateEnemiesWithPosition(inputData, currentIndex);
 
 		for (EnemyDto item : enemyTypes) {
@@ -129,7 +120,6 @@ public class ParserLogic {
 				// App.Log("Should be removed!" + item);
 
 			} else {
-				// App.Log("Stay!" + item);
 				result.add(item);
 			}
 		}
@@ -141,54 +131,6 @@ public class ParserLogic {
 		return line.substring(0, line.indexOf(" "));
 	}
 
-	/*
-	 * class RandomData { String propName; Object value;
-	 * 
-	 * public String getPropName() { return propName; }
-	 * 
-	 * public void setPropName(String propName) { this.propName = propName; }
-	 * 
-	 * }
-	 */
-
-	// public RandomData parseRandomLine(String str) {
-	// RandomData result = new RandomData();
-	// String[] array = str.split(" ");
-	// for (String item : array) {
-	// item = item.toLowerCase();
-	// if (keywords.indexOf(item) != -1) {
-	// String temp = keywords.get(keywords.indexOf(item));
-	// if (temp == "enemy") { // due to jdk 1.8 possible issues, used
-	// // if blocks instead of switch
-	// result.propName = "Enemy.name";
-	// result.value = array[0]; // *Bug* is Enemy
-	// } else if (temp == "has") {
-	// result.propName = "Enemy.hp";
-	// result.value = Integer.parseInt(array[2]); // hp value
-	// // stands right
-	// // before the
-	// // last word of
-	// // the sentence
-	// } else if (temp == "attack") {
-	// result.propName = "Enemy.attackPoint";
-	// result.value = Integer.parseInt(array[array.length - 1]); // attack
-	// // is
-	// // the
-	// // last
-	// // word
-	// } else if (temp == "position") {
-	// result.propName = "Enemy.position";
-	// result.value = Integer.parseInt(array[array.length - 1]); // position
-	// // is
-	// // the
-	// // last
-	// // word
-	// }
-	// }
-	// }
-	//
-	// return null;
-	// }
 
 	public int parseSpecificLine(String resourceLine) { // Example : Resources
 														// are 7500
@@ -200,7 +142,7 @@ public class ParserLogic {
 			}
 		}
 
-		return 0; //
+		return 0; 
 	}
 
 	public Boolean checkIfContainsKeyword(String line, String keyword) {
@@ -218,7 +160,7 @@ public class ParserLogic {
 				return Integer.parseInt(item);
 		}
 
-		return 0; // return
+		return 0; 
 	}
 
 	Boolean checkIfNumber(String input) {

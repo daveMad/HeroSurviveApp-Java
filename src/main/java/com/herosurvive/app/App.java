@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 import com.herosurvice.models.ErrorType;
-import com.herosurvice.models.Hero;
 import com.herosurvive.service.*;;
 
 /**
@@ -48,8 +47,6 @@ public class App {
 		
 		ParserLogic.getInstance().parseWholeFile(inputData);
 		
-		
-		// DataService.setInputData(inputData);
 	}
 
 	public static void Log(String message) {
