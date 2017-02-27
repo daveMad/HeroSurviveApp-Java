@@ -7,12 +7,11 @@ import com.herosurvice.models.*;
 import com.herosurvive.app.App;
 
 public class LogService {
-	
-	
+
 	private static LogService _logger;
 
 	private List<String> fullOutput;
-	
+
 	public List<String> errorMessages;
 
 	private LogService() {
@@ -26,7 +25,7 @@ public class LogService {
 
 		return _logger;
 	}
-	
+
 	public void logBattleWin(Hero hero, Enemy enemy) {
 		String message = "Hero defeated " + enemy.name + " with " + hero.hp + " HP remaining";
 		App.Log(message);
@@ -36,21 +35,21 @@ public class LogService {
 	public void add(String message) {
 		fullOutput.add(message);
 	}
-	
-	public void writeResultToFile(){
+
+	public void writeResultToFile() {
 		FileLogic fileLogic = new FileLogic("");
 		fileLogic.writeOutput(DataService.getInstance().getOutputFile(), fullOutput);
 	}
-	
+
 	public void logBattleDefeat(Hero hero, Enemy enemy) {
 		String message = enemy.name + " defeated Hero with " + enemy.hp + " HP remaining";
 		App.Log(message);
 		add(message);
-		
+
 		logDeath(hero); // if here is dead, we can just log it here;
 	}
 
-	public void logDeath(Hero hero) {
+	void logDeath(Hero hero) {
 		String message = "Hero is Dead!! Last seen at position " + hero.position + "!!";
 		App.Log(message);
 		add(message);
@@ -67,8 +66,8 @@ public class LogService {
 		App.Log(message);
 		add(message);
 	}
-	
-	public void logError(ErrorType type){
+
+	public void logError(ErrorType type) {
 		this.errorMessages.add(type.toString());
 		App.Log(type.toString());
 	}

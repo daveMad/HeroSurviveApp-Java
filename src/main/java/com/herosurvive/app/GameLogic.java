@@ -11,13 +11,11 @@ public class GameLogic {
 						// or not
 	GameMap map;
 	Hero hero;
-	FileLogic fileLogic;
 	
 	public GameLogic(Hero hero) {
 		// to do : initialize game map using FileLogic helper methods,
 		// invoke update()
 		this.hero = hero;
-		fileLogic = new FileLogic("");
 	}
 
 	public void start() {
@@ -47,24 +45,21 @@ public class GameLogic {
 			if (enemy != null) { // to do : start an attack
 				if (!startBattle(enemy)) {
 					LogService.getInstance().logBattleDefeat(hero, enemy);
-
 					finished = true;
 					return;
 				}
+				else{
+					LogService.getInstance().logBattleWin(this.hero, enemy);
+				}
 
 			}
-
 			hero.move();
-
 		}
 	}
+	
+	
 
-	public void logResult() {
-		// to do : log survived or not
-		App.Log((hero.hp > 0) ? "Survived" : "Dead");
-
-	}
-
+	
 	public Boolean startBattle(Enemy enemy) { // to do : return true if hero
 												// survives
 		Boolean battleFinished = false;
@@ -74,8 +69,8 @@ public class GameLogic {
 			if (hero.hp <= 0) {
 				battleFinished = true;
 				return false;
-
 			}
+			
 
 			if (enemy.hp <= 0) {
 				battleFinished = true;
@@ -95,5 +90,11 @@ public class GameLogic {
 
 		}
 		return true;
+	}
+	
+	public void logResult() {
+		// to do : log survived or not
+		App.Log((hero.hp > 0) ? "Survived" : "Dead");
+
 	}
 }

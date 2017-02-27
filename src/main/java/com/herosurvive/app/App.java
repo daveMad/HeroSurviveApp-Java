@@ -17,9 +17,8 @@ public class App {
 		System.out.println("Hello World!");
 		// first get inputs for filenames,
 		// then start the game
-
+		HandleInput();
 		GameLogic logic = new GameLogic(new Hero(12, 100, 10));
-
 		logic.start();
 	}
 
