@@ -26,7 +26,7 @@ public class LogService {
 
 		return _logger;
 	}
-
+	
 	public void logBattleWin(Hero hero, Enemy enemy) {
 		String message = "Hero defeated " + enemy.name + " with " + hero.hp + " HP remaining";
 		App.Log(message);
@@ -36,7 +36,12 @@ public class LogService {
 	public void add(String message) {
 		fullOutput.add(message);
 	}
-
+	
+	public void writeResultToFile(){
+		FileLogic fileLogic = new FileLogic("");
+		fileLogic.writeOutput(DataService.getInstance().getOutputFile(), fullOutput);
+	}
+	
 	public void logBattleDefeat(Hero hero, Enemy enemy) {
 		String message = enemy.name + " defeated Hero with " + enemy.hp + " HP remaining";
 		App.Log(message);

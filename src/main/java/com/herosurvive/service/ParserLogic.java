@@ -36,10 +36,7 @@ public class ParserLogic {
 		parsedData.hero.hp = parseSpecificLine(inputData.get(1));
 		parsedData.hero.attackPoint = parseSpecificLine(inputData.get(2));
 		// now get each enemy of unknown number
-
-		List<Enemy> enemies;
-
-		// get the known number of enemies position
+		parsedData.enemies = extractEnemies(inputData);
 	}
 
 	class EnemyDto {
@@ -82,7 +79,8 @@ public class ParserLogic {
 								// enemy, increase index by 2
 		}
 
-		//currentIndex += 2; // now time to get the positions of the enemies,again respectively
+		// currentIndex += 2; // now time to get the positions of the
+		// enemies,again respectively
 		enemies = generateEnemiesWithPosition(inputData, currentIndex);
 
 		for (EnemyDto item : enemyTypes) {
@@ -91,7 +89,7 @@ public class ParserLogic {
 				if (currentEnemy.name.equals(item.name)) {
 					currentEnemy.hp = item.hp;
 					currentEnemy.attackPoint = item.attackPoint;
-					
+
 				}
 			}
 		}
@@ -99,7 +97,7 @@ public class ParserLogic {
 		return enemies;
 	}
 
-	public List<Enemy> generateEnemiesWithPosition(List<String> inputData,int startingIndex) {
+	public List<Enemy> generateEnemiesWithPosition(List<String> inputData, int startingIndex) {
 		List<Enemy> enemies = new ArrayList<Enemy>();
 		List<String> relatedLines = inputData.subList(startingIndex, inputData.size());
 		for (String line : relatedLines) {
@@ -110,18 +108,16 @@ public class ParserLogic {
 		return enemies;
 	}
 
-	
 	public Enemy extractEnemyWithPosition(String line) {
 		List<String> array = Arrays.asList(line.split(" "));
 		String keys = "There is a at position";
 		List<String> result = new ArrayList<String>();
 		for (String item : array) {
-			if (keys.indexOf(item) != -1){
-//				App.Log("Should be removed!" + item);
-				
-			}
-			else {
-			//	App.Log("Stay!" + item);
+			if (keys.indexOf(item) != -1) {
+				// App.Log("Should be removed!" + item);
+
+			} else {
+				// App.Log("Stay!" + item);
 				result.add(item);
 			}
 		}

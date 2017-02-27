@@ -32,7 +32,7 @@ public class Enemy extends Entity implements ICharacter {
 
 	@Override
 	public String toString() {
-		return "Enemy =>  Pos : " + this.position + " Hp : " + this.hp + " Attack : " + this.attackPoint;
+		return "Enemy => Name : "+this.name+" Pos : " + this.position + " Hp : " + this.hp + " Attack : " + this.attackPoint;
 	}
 
 }
