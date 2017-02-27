@@ -8,6 +8,11 @@ public class Enemy extends Entity implements ICharacter {
 		super(position, hp, attackPoint);
 		this.name = name;
 	}
+	
+	public Enemy(String name,int position){
+		this.position = position;
+		this.name = name;
+	}
 
 	public Enemy(String name) {
 		if (name == "")
