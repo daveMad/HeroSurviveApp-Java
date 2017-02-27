@@ -1,13 +1,14 @@
 package com.herosurvive.service;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.herosurvice.models.*;
 public class GameMap {
 	Hero hero;
-	ArrayList<Enemy> enemies;
+	List<Enemy> enemies;
 	int endPosition = 0;
 	
-	public GameMap(Hero hero,ArrayList<Enemy> enemies,int endPosition){
+	public GameMap(Hero hero,List<Enemy> enemies,int endPosition){
 		this.hero = hero;
 		this.enemies = enemies;
 		this.endPosition = endPosition;

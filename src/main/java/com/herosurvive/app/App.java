@@ -28,11 +28,11 @@ public class App {
 		InputLogic input = new InputLogic();
 		String inputFileName = input.getInput(inputFileMessage);
 		String outputFileName = input.getInput(outputFileMessage);
-		
+		if (inputFileName.trim().equals("") || outputFileName.trim().equals(""))
+			LogService.getInstance().logError(ErrorType.NULLINPUTDATA);
 		// keep file names on service
 		DataService.getInstance().setFileNames(inputFileName, outputFileName);
-		
-		
+
 		// read input string and parse
 		FileLogic fileLogic = new FileLogic("");
 		List<String> inputData = null;
@@ -41,13 +41,13 @@ public class App {
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
-		if(inputData == null){
+		}
+		if (inputData == null) {
 			LogService.getInstance().logError(ErrorType.NULLINPUTDATA);
 			return; // program ends here
 		}
-		
-		//DataService.setInputData(inputData);
+
+		// DataService.setInputData(inputData);
 	}
 
 	public static void Log(String message) {

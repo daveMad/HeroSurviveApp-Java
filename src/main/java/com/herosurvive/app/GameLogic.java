@@ -3,6 +3,8 @@ package com.herosurvive.app;
 import java.awt.List;
 import java.util.ArrayList;
 
+import javax.swing.text.html.HTMLEditorKit.Parser;
+
 import com.herosurvice.models.*;
 import com.herosurvive.service.*;
 
@@ -22,6 +24,7 @@ public class GameLogic {
 		// to do :
 		// call update method, set flag
 		if (map == null) {
+			map = new GameMap(this.hero, ParserLogic.getInstance().parsedData.enemies, ParserLogic.getInstance().parsedData.resourcePoint);
 			return;
 		}
 		LogService.getInstance().logStart(this.hero);
