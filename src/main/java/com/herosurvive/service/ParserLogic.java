@@ -79,13 +79,16 @@ public class ParserLogic {
 		return enemies;
 	}
 	
-	
+	public List<Enemy> generateEnemiesWithPosition(List<String> inputData){
+		for (String line : inputData) {
+			Enemy current = new Enemy(extractEnemyWithPosition(line)
+		}
+	}
 
-	public List<String> extractEnemyWithPosition(String line) {
+	public Enemy extractEnemyWithPosition(String line) {
 		List<String> array = Arrays.asList(line.split(" "));
 		String keys = "There is a at position";
 		List<String> result = new ArrayList<String>();
-
 		for (String item : array) {
 			if (keys.indexOf(item) != -1)
 				App.Log("Should be removed!" + item);
@@ -94,14 +97,15 @@ public class ParserLogic {
 				result.add(item);
 			}
 		}
-		return result;
+		Enemy enemy = new Enemy(result.get(0),Integer.parseInt(result.get(1)));
+		return enemy;
 	}
 
 	public Enemy extractEnemy(String line) { // extract the enemy name w
 		return new Enemy(line.substring(0, line.indexOf(" ")));
 	}
 
-	class RandomData {
+	/*class RandomData {
 		String propName;
 		Object value;
 
@@ -113,46 +117,46 @@ public class ParserLogic {
 			this.propName = propName;
 		}
 
-	}
+	}*/
 
-	public RandomData parseRandomLine(String str) {
-		RandomData result = new RandomData();
-		String[] array = str.split(" ");
-		for (String item : array) {
-			item = item.toLowerCase();
-			if (keywords.indexOf(item) != -1) {
-				String temp = keywords.get(keywords.indexOf(item));
-				if (temp == "enemy") { // due to jdk 1.8 possible issues, used
-										// if blocks instead of switch
-					result.propName = "Enemy.name";
-					result.value = array[0]; // *Bug* is Enemy
-				} else if (temp == "has") {
-					result.propName = "Enemy.hp";
-					result.value = Integer.parseInt(array[2]); // hp value
-																// stands right
-																// before the
-																// last word of
-																// the sentence
-				} else if (temp == "attack") {
-					result.propName = "Enemy.attackPoint";
-					result.value = Integer.parseInt(array[array.length - 1]); // attack
-																				// is
-																				// the
-																				// last
-																				// word
-				} else if (temp == "position") {
-					result.propName = "Enemy.position";
-					result.value = Integer.parseInt(array[array.length - 1]); // position
-																				// is
-																				// the
-																				// last
-																				// word
-				}
-			}
-		}
-
-		return null;
-	}
+	//public RandomData parseRandomLine(String str) {
+	//	RandomData result = new RandomData();
+	//	String[] array = str.split(" ");
+	//	for (String item : array) {
+	//		item = item.toLowerCase();
+	//		if (keywords.indexOf(item) != -1) {
+	//			String temp = keywords.get(keywords.indexOf(item));
+	//			if (temp == "enemy") { // due to jdk 1.8 possible issues, used
+	//									// if blocks instead of switch
+	//				result.propName = "Enemy.name";
+	//				result.value = array[0]; // *Bug* is Enemy
+	//			} else if (temp == "has") {
+	//				result.propName = "Enemy.hp";
+	//				result.value = Integer.parseInt(array[2]); // hp value
+	//															// stands right
+	//															// before the
+	//															// last word of
+	//															// the sentence
+	//			} else if (temp == "attack") {
+	//				result.propName = "Enemy.attackPoint";
+	//				result.value = Integer.parseInt(array[array.length - 1]); // attack
+	//																			// is
+	//																			// the
+	//																			// last
+	//																			// word
+	//			} else if (temp == "position") {
+	//				result.propName = "Enemy.position";
+	//				result.value = Integer.parseInt(array[array.length - 1]); // position
+	//																			// is
+	//																			// the
+	//																			// last
+	//																			// word
+	//			}
+	//		}
+	//	}
+    //
+	//	return null;
+	//}
 
 	public int parseSpecificLine(String resourceLine) { // Example : Resources
 														// are 7500

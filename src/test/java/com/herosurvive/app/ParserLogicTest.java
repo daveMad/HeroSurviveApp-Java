@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 
 import org.junit.Test;
 
+import com.herosurvice.models.Enemy;
 import com.herosurvive.service.FileLogic;
 import com.herosurvive.service.ParserLogic;
 
@@ -16,10 +17,9 @@ public class ParserLogicTest {
 	
 	@Test
 	public void shouldExtractEnemyWithNameAndPosition(){
-		List<String> data = ParserLogic.getInstance().extractEnemyWithPosition("There is a Zombie at position 1681");
-		for (String string : data) {
-			App.Log("Result String :: "+string);
-		}
+		Enemy enemy = ParserLogic.getInstance().extractEnemyWithPosition("There is a Zombie at position 1681");
+		assertEquals("Zombie", enemy.name);
+		assertEquals(1681, enemy.position);
 	}
 	
 	/*@Test
